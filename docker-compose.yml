@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  front:
+    build: ./nginx
+    ports:
+      - "80:80"
+    restart: always
+    depends_on: 
+      - nodeapp
+  
+  nodeapp:
+    build: ./nodeapp
+    environment:
+      - NODE_ENV=production
+      #- DEBUG=express:*
+    ports:
+      - "3001:3001"
